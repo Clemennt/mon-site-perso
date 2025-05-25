@@ -1,0 +1,14 @@
+[
+  {
+    "titre": "Cyclosportive de l'Ardéchoise",
+    "type": "route",
+    "lien": "evenement-ardechoise.html",
+    "image": "images/evenements/ardechoise.jpg"
+  },
+  {
+    "titre": "Randonnée VTT de la Chartreuse",
+    "type": "vtt",
+    "lien": "evenement-chartreuse.html",
+    "image": "images/evenements/chartreuse.jpg"
+  }
+]

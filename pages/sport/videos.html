@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vidéos – Activités sportives</title>
+  <link rel="stylesheet" href="../../../style/style.css" />
+</head>
+<body class="videos-page">
+
+  <!-- En-tête -->
+  <div class="header-sport">
+    <h1>Vidéos – Activités sportives</h1>
+    <p>Retrouve ici mes vlogs, sorties filmées et vidéos liées au sport.</p>
+  </div>
+
+  <!-- Bouton retour -->
+  <div class="categories-sport">
+    <button class="retour-btn" onclick="window.location.href='index.html'">← Retour aux activités sportives</button>
+  </div>
+
+  <!-- Filtres -->
+  <div class="filtre-parcours">
+   <button data-reset="true" class="actif">Tous</button>
+   <button data-type="route">Route</button>
+   <button data-type="vtt">VTT</button>
+   <button data-annee="2025">2025</button>
+  </div>
+
+  <!-- Grille de vidéos -->
+  <main>
+    <div class="parcours-grille">
+
+      <!-- Vidéo 1 -->
+      <div class="parcours-container route video-card" data-annee="2025">
+        <div class="parcours-titre">
+          <span class="badge route">🚴 ROUTE</span>
+          SORTIE AU LAC DE PALADRU – 12 MAI 2025
+        </div>
+        <iframe src="https://www.youtube.com/embed/VID1_ID" frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <!-- Vidéo 2 -->
+      <div class="parcours-container vtt video-card" data-annee="2025">
+        <div class="parcours-titre">
+          <span class="badge vtt">🚵‍♀️ VTT</span>
+          BOUCLE DANS LA FORÊT DE CHARTREUSE
+        </div>
+        <iframe src="https://www.youtube.com/embed/VID2_ID" frameborder="0" allowfullscreen></iframe>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Pied de page -->
+  <footer>
+    <p>➞ Retrouvez toutes mes vidéos sur ma chaîne YouTube ou TikTok 👇</p>
+    <img src="../../../images/tiktok-profil.png" alt="Logo TikTok" class="footer-logo">
+  </footer>
+
+  <!-- Script -->
+  <script>
+  function appliquerFiltres(type = 'all', annee = 'all') {
+    const blocs = document.querySelectorAll('.parcours-container');
+
+    blocs.forEach(b => {
+      const matchType = (type === 'all' || b.classList.contains(type));
+      const matchAnnee = (annee === 'all' || b.dataset.annee === annee);
+      b.style.display = (matchType && matchAnnee) ? 'flex' : 'none';
+    });
+
+    // Mise à jour des styles actifs
+    document.querySelectorAll('.filtre-parcours button').forEach(btn => btn.classList.remove('actif'));
+    if (type !== 'all') document.querySelector(`.filtre-parcours button[data-type="${type}"]`)?.classList.add('actif');
+    if (annee !== 'all') document.querySelector(`.filtre-parcours button[data-annee="${annee}"]`)?.classList.add('actif');
+    if (type === 'all' && annee === 'all') document.querySelector(`.filtre-parcours button[data-reset="true"]`)?.classList.add('actif');
+  }
+
+  // Boutons
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.filtre-parcours button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.dataset.type || 'all';
+        const annee = btn.dataset.annee || 'all';
+        const reset = btn.dataset.reset === 'true';
+
+        if (reset) {
+          appliquerFiltres(); // reset total
+        } else {
+          appliquerFiltres(type, annee);
+        }
+      });
+    });
+  });
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Événements – 2025</title>
+  <link rel="stylesheet" href="../../../style/style.css" />
+</head>
+<body class="evenements-page">
+
+  <!-- En-tête -->
+  <div class="header-sport">
+    <h1>Événements – 2025</h1>
+    <p>Retrouve ici les événements marquants de l’année 2025 : randos, cyclos, défis personnels.</p>
+  </div>
+
+  <!-- Bouton retour -->
+  <div class="categories-sport">
+    <button class="retour-btn" onclick="window.location.href='evenements.html'">← Retour aux activités sportives</button>
+  </div>
+
+  <!-- Conteneur événements -->
+  <main>
+    <div class="parcours-grille" id="evenement-liste"></div>
+  </main>
+
+  <!-- Pied de page -->
+  <footer>
+    <p>➞ Plus de contenus sur ma chaîne YouTube ou TikTok 👇</p>
+    <img src="../../../images/tiktok-profil.png" alt="Logo TikTok" class="footer-logo">
+  </footer>
+
+  <!-- Script -->
+  <script>
+    fetch("evenements-2025.json")
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById("evenement-liste");
+
+        data.forEach(evt => {
+          const a = document.createElement("a");
+          a.href = evt.lien; // ce lien pointe vers la page dédiée de l’événement (ex: evenement-ardechoise.html)
+          a.className = `parcours-container ${evt.type}`;
+          a.innerHTML = `
+           <div class="parcours-titre">
+            <span class="badge ${evt.type}">
+             ${evt.type === "vtt" ? "🚵‍♀️ VTT" : "🚴‍♂️ ROUTE"}
+            </span>
+            ${evt.titre.toUpperCase()}
+          </div>
+          <img src="${evt.image}" alt="${evt.titre}" class="image-evenement">
+        `;
+         container.appendChild(a);
+
+        });
+      });
+  </script>
+</body>
+</html>
+

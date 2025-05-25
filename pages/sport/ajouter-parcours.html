@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter un parcours</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #f0f8ff;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    pre {
+      background-color: #e8f4ff;
+      padding: 15px;
+      border-radius: 5px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ajouter un parcours</h1>
+
+  <form id="parcoursForm">
+    <label for="date">Date de la sortie</label>
+    <input type="date" id="date" required>
+
+    <label for="titre">Titre</label>
+    <input type="text" id="titre" placeholder="Ex : Sortie autour du lac" required>
+
+    <label for="type">Type</label>
+    <select id="type">
+      <option value="route">🚴‍♂️ Route</option>
+      <option value="vtt">🚵‍♀️ VTT</option>
+    </select>
+
+    <label for="distance">Distance (km)</label>
+    <input type="number" id="distance" required>
+
+    <label for="denivele">Dénivelé (m)</label>
+    <input type="number" id="denivele" required>
+
+    <label for="duree">Durée</label>
+    <input type="text" id="duree" placeholder="Ex : 2h12" required>
+
+    <label for="image">Nom du fichier image (dans /images/)</label>
+    <input type="text" id="image" placeholder="ex : paladru.jpg">
+
+    <label for="lien">Lien Komoot</label>
+    <input type="url" id="lien" required>
+
+    <button type="submit">Générer le JSON</button>
+  </form>
+
+  <h2>Bloc JSON généré :</h2>
+  <pre id="output"></pre>
+
+  <script>
+    document.getElementById("parcoursForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const date = document.getElementById("date").value;
+      const titre = document.getElementById("titre").value;
+      const type = document.getElementById("type").value;
+      const distance = document.getElementById("distance").value;
+      const denivele = document.getElementById("denivele").value;
+      const duree = document.getElementById("duree").value;
+      const image = document.getElementById("image").value;
+      const lien = document.getElementById("lien").value;
+
+      const sortie = {
+        date: date,
+        titre: titre,
+        type: type,
+        distance: parseFloat(distance),
+        denivele: parseInt(denivele),
+        duree: duree,
+        image: image,
+        lien: lien
+      };
+
+      document.getElementById("output").textContent = JSON.stringify(sortie, null, 2);
+    });
+  </script>
+
+</body>
+</html>

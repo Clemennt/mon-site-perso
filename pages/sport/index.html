@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activités sportives</title>
+  <link rel="stylesheet" href="../../style/style.css">
+</head>
+<body>
+
+  <div class="header-sport">
+    <h1>Activités sportives</h1>
+    <p>Retrouve ici mes sorties vélo (route & VTT), vidéos et événements passés.</p>
+  </div>
+
+  <div class="categories-sport">
+    <button id="parcours-btn">Parcours & traces GPS</button>
+    <button onclick="window.location.href='videos.html'">Vidéos</button>
+    <button onclick="window.location.href='evenements/evenements.html'">Sorties & événements</button>
+    <button class="retour-btn" onclick="window.location.href='../../site.html'">← Retour à l’accueil</button>
+  </div>
+
+  <main>
+    <!-- Section Mois -->
+    <div id="mois-section" class="collection-grille" style="display: none;">
+      <a href="./parcours/mai2025.html" class="mois-bouton">Mai 2025</a>
+      <a href="./parcours/juin2025.html" class="mois-bouton">Juin 2025</a>
+    </div>
+
+    <!-- Section événements -->
+    <div id="evenements-section" class="collection-grille" style="display: none;">
+     <div class="mois-bouton" onclick="window.location.href='evenements.html'">
+    Cyclosportive Ardéchoise
+    </div>
+    <div class="mois-bouton" onclick="window.location.href='evenements.html'">
+    Randonnée de Chartreuse
+    </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>➡ Retrouvez toutes mes vidéos sur ma chaîne YouTube ou TikTok 👇</p>
+    <img src="../../images/tiktok-profil.png" alt="Logo TikTok" class="footer-logo">
+  </footer>
+
+  <script src="../../scripts/main.js"></script>
+</body>
+</html>
